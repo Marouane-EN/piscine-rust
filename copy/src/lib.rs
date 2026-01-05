@@ -16,7 +16,7 @@ pub fn str_function(a: String) -> (String, String) {
 
 pub fn vec_function(b: Vec<i32>) -> (Vec<i32>, Vec<f64>) {
     let mut result: Vec<f64> = Vec::new();
-    b.iter().for_each(|x| { result.push((*x as f64).ln()) });
+    b.iter().for_each(|x| { result.push((*x as f64).abs().ln()) });
     (b, result)
 }
 
