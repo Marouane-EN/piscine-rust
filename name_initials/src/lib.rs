@@ -1,17 +1,27 @@
 pub fn initials(names: Vec<&str>) -> Vec<String> {
-    names
-        .iter()
-        .map(|name| {
-            let result: Vec<String> = name
-                .split_whitespace()
-                .map(|s| {
-                    let ch = s.chars().next().unwrap();
-                    format!("{}.", ch)
-                })
-                .collect();
-            result.join(" ")
-        })
-        .collect()
+    let mut result: Vec<String> = Vec::new();
+    let mut index = 0;
+    for name in names {
+        let mut sum = String::new();
+        sum.push(name.chars().next().unwrap());
+        sum.push('.');
+        sum.push(' ');
+        index = name
+            .chars()
+            .position(|c| c == ' ')
+            .unwrap();
+        sum.push(
+            name
+                .chars()
+                .nth(index + 1)
+                .unwrap()
+        );
+        sum.push('.');
+        result.push(sum.clone());
+        sum.clear();
+    }
+
+    result
 }
 
 #[cfg(test)]
