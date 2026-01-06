@@ -40,7 +40,7 @@ impl Rank {
     pub fn translate(value: u8) -> Rank {
         match value {
             1 => Rank::Ace,
-            2..10 => Rank::Number(value),
+            2_u8..=10_u8 => Rank::Number(value),
             11 => Rank::Jack,
             12 => Rank::Queen,
             _ => Rank::King,
