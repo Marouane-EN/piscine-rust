@@ -25,7 +25,7 @@ impl Circle {
     }
     pub fn intersect(&self, circle: Circle) -> bool {
         let d = &self.center.distance(circle.center);
-        if (&self.radius - circle.radius).abs() > *d {
+        if &self.radius + circle.radius > *d {
             return true;
         }
         false
