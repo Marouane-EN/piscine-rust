@@ -17,7 +17,7 @@ pub enum Rank {
 
 impl Suit {
     pub fn random() -> Suit {
-        let rng = rand::rng().random_range(1..=4);
+        let rng = rand::thread_rng().gen_range(1..=4);
         Suit::translate(rng)
     }
 
@@ -33,7 +33,7 @@ impl Suit {
 
 impl Rank {
     pub fn random() -> Rank {
-        let rng = rand::rng().random_range(1..=13);
+        let rng = rand::thread_rng().gen_range(1..=13);
         Rank::translate(rng)
     }
 
