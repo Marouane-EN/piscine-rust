@@ -6,7 +6,7 @@ pub fn capitalize_first(input: &str) -> String {
 }
 
 pub fn title_case(input: &str) -> String {
-    let mut words = input.split_ascii_whitespace().map(String::from).collect::<Vec<String>>();
+    let mut words = input.split(' ').map(String::from).collect::<Vec<String>>();
     for word in words.iter_mut() {
         *word = word.chars().nth(0).unwrap().to_ascii_uppercase().to_string() + &word[1..];
     }
@@ -14,7 +14,7 @@ pub fn title_case(input: &str) -> String {
 }
 
 pub fn change_case(input: &str) -> String {
-    let mut words = input.split_ascii_whitespace().map(String::from).collect::<Vec<String>>();
+    let mut words = input.split(' ').map(String::from).collect::<Vec<String>>();
     for word in words.iter_mut() {
         *word = word
             .chars()
