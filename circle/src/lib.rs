@@ -23,7 +23,7 @@ impl Circle {
     pub fn area(&self) -> f64 {
         self.radius.powi(2) * PI
     }
-    pub fn intersect(&self, circle: Circle) -> bool {
+    pub fn intersect(&self, circle: Self) -> bool {
         let d = self.center.distance(circle.center);
         if self.radius + circle.radius > d {
             return true;
