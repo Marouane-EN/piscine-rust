@@ -2,7 +2,7 @@ use std::f64::consts::PI;
 #[derive(Debug, Clone, Copy)]
 pub struct Point(pub f64, pub f64);
 impl Point {
-    pub fn distance(&self, point: Point) -> f64 {
+    pub fn distance(&self, point: Self) -> f64 {
         let sum = (&self.0 - point.0).powi(2) + (&self.1 - point.1).powi(2);
         sum.sqrt()
     }
