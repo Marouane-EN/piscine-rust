@@ -12,7 +12,7 @@ pub fn capitalize_first(input: &str) -> String {
 
 pub fn title_case(input: &str) -> String {
     let mut words = input
-        .split_inclusive(|c: char| c == ' ')
+        .split_inclusive(|c: char| c.is_whitespace())
         .map(String::from)
         .collect::<Vec<String>>();
     for word in words.iter_mut() {
@@ -23,7 +23,7 @@ pub fn title_case(input: &str) -> String {
 
 pub fn change_case(input: &str) -> String {
     let mut words = input
-        .split_inclusive(|c: char| c == ' ')
+        .split_inclusive(|c: char| c.is_whitespace())
         .map(String::from)
         .collect::<Vec<String>>();
     for word in words.iter_mut() {
@@ -49,6 +49,6 @@ mod tests {
 
     #[test]
     fn it_works() {
-        assert_eq!(title_case("Hello My\t\tName Is Carl"), "Hello My\t\tName Is Carl");
+        assert_eq!(title_case("Hello My\t\tname Is Carl"), "Hello My\t\tName Is Carl");
     }
 }
