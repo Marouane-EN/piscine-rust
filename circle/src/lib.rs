@@ -1,5 +1,5 @@
 use std::f32::consts::PI;
-
+#[derive(Debug, Clone, Copy)]
 pub struct Point(pub f32, pub f32);
 impl Point {
     pub fn distance(&self, point: Point) -> f32 {
@@ -7,7 +7,7 @@ impl Point {
         sum.sqrt()
     }
 }
-
+#[derive(Debug, Clone, Copy)]
 pub struct Circle {
     pub center: Point,
     pub radius: f32,
