@@ -18,14 +18,14 @@ impl Circle {
         Self { center: Point(c_x, c_y), radius: r }
     }
     pub fn diameter(&self) -> i32 {
-        (&self.radius * 2.0) as i32
+        (self.radius * 2.0) as i32
     }
     pub fn area(&self) -> f64 {
-        &self.radius.powi(2) * PI
+        self.radius.powi(2) * PI
     }
     pub fn intersect(&self, circle: Circle) -> bool {
-        let d = &self.center.distance(circle.center);
-        if &self.radius + circle.radius > *d {
+        let d = self.center.distance(circle.center);
+        if self.radius + circle.radius > d {
             return true;
         }
         false
