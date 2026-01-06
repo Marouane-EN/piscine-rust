@@ -12,7 +12,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let a: [i32; 10] = (1..=10).collect::<Vec<i32>>().try_into().unwrap();
+        let a: [i32; 10] = (1..=10).collect::<Vec<_>>().try_into().unwrap();
         let b = [5; 10];
         assert_eq!(sum((1..=10).collect::<Vec<_>>().as_slice()), 55);
         assert_eq!(sum(&b), 50);
