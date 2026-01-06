@@ -24,8 +24,8 @@ impl Circle {
         &self.radius.powi(2) * PI
     }
     pub fn intersect(&self, circle: Circle) -> bool {
-        let d = &self.radius + circle.radius;
-        if (&self.radius - circle.radius).abs() < d || d < &self.radius + circle.radius {
+        let d = &self.center.distance(circle.center);
+        if (&self.radius - circle.radius).abs() < *d || *d < &self.radius + circle.radius {
             return true;
         }
         false
