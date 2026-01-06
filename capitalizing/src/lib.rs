@@ -1,0 +1,48 @@
+pub fn capitalize_first(input: &str) -> String {
+    format!("{}{}", input.chars().nth(0).unwrap().to_ascii_uppercase(), &input[1..])
+}
+
+pub fn title_case(input: &str) -> String {
+    let mut words = input.split_whitespace().map(String::from).collect::<Vec<String>>();
+    for word in words.iter_mut() {
+        *word = word.chars().nth(0).unwrap().to_ascii_uppercase().to_string() + &word[1..];
+    }
+    words.join(" ")
+}
+
+pub fn change_case(input: &str) -> String {
+    let mut words = input.split_whitespace().map(String::from).collect::<Vec<String>>();
+    for word in words.iter_mut() {
+        *word = word
+            .chars()
+            .map(|c| {
+                if c.is_ascii_lowercase() {
+                    c.to_ascii_uppercase()
+                } else if c.is_ascii_uppercase() {
+                    c.to_ascii_lowercase()
+                } else {
+                    c
+                }
+            })
+            .collect();
+    }
+    words.join(" ")
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        assert_eq!(capitalize_first("joe is missing"), "Joe is missing");
+    }
+    #[test]
+    fn it_works1() {
+        assert_eq!(title_case("jill is leaving A"), "Jill Is Leaving A");
+    }
+    #[test]
+    fn it_works2() {
+        assert_eq!(change_case("heLLo THere"), "HEllO thERE");
+    }
+}
