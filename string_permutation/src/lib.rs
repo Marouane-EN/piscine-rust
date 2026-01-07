@@ -7,7 +7,7 @@ pub fn is_permutation(s1: &str, s2: &str) -> bool {
             }
         }
     }
-    skip_index.len() == s1.len()
+    skip_index.len() == s1.chars().count() && skip_index.len() == s2.chars().count()
 }
 
 #[cfg(test)]
@@ -16,8 +16,14 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let word = "thotugh";
-        let word1 = "thougth";
-        assert_eq!(is_permutation(word, word1), true);
+        assert_eq!(!is_permutation("cde", "edbca"), true);
+    }
+    #[test]
+    fn it_works1() {
+        assert_eq!(is_permutation("hello♥", "♥oelhl"), true);
+    }
+    #[test]
+    fn it_works2() {
+        assert_eq!(is_permutation("thought", "thougth"), true);
     }
 }
