@@ -1,4 +1,4 @@
-mod err;
+pub mod err;
 
 use std::{ error::Error, fs::{ self } };
 
@@ -25,7 +25,7 @@ impl TodoList {
             }
         })?;
         let parse = json::parse(&content).map_err(|e| ParseErr::Malformed(Box::new(e)))?;
-        let title = parse["title"].to_string();
+        let title = parse["title"].as_str().unwrap_or("Todo List").to_string();
         let mut tasks = Vec::new();
         for s in parse["tasks"].members() {
             let id = s["id"]
