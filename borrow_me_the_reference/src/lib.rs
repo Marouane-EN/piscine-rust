@@ -1,3 +1,4 @@
+
 pub fn delete_and_backspace(s: &mut String) {
     let mut new_s = String::new();
     let mut skip = 0;
