@@ -15,7 +15,7 @@ pub fn fetch_data(server: Result<&str, &str>, security_level: Security) -> Strin
     };
     match security_level {
         Security::Unknown => panic!(),
-        Security::Message => panic!("ERROR: program stops"),
+        Security::Message => panic!("ERROR: program stops: {}", error_text),
         Security::Warning => panic!("WARNING: check the server"),
         Security::NotFound => panic!("Not found: {}", error_text),
         Security::UnexpectedUrl => panic!("{}", error_text),
