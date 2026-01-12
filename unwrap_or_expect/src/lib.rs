@@ -7,37 +7,18 @@ pub enum Security {
 }
 
 pub fn fetch_data(server: Result<&str, &str>, security_level: Security) -> String {
+    let error_text = match server {
+        Ok(text) => {
+            return text.to_string();
+        }
+        Err(e) => e,
+    };
     match security_level {
-        Security::Unknown =>
-            match server {
-                Ok(text) => text.to_string(),
-                Err(_) => panic!(),
-            }
-        Security::Message =>
-            match server {
-                Ok(text) => text.to_string(),
-
-                Err(_) => panic!("ERROR: program stops"),
-            }
-        Security::Warning =>
-            match server {
-                Ok(text) => text.to_string(),
-
-                Err(_) => panic!("WARNING: check the server"),
-            }
-        Security::NotFound =>
-            match server {
-                Ok(text) => text.to_string(),
-
-                Err(text) => panic!("Not found: {}", text),
-            }
-        Security::UnexpectedUrl =>
-            match server {
-                Ok(text) => text.to_string(),
-
-                Err(text) => panic!("{}", text),
-            }
-        _ => panic!(),
+        Security::Unknown => panic!(),
+        Security::Message => panic!("ERROR: program stops"),
+        Security::Warning => panic!("WARNING: check the server"),
+        Security::NotFound => panic!("Not found: {}", error_text),
+        Security::UnexpectedUrl => panic!("{}", error_text),
     }
 }
 
@@ -47,6 +28,6 @@ mod tests {
 
     #[test]
     fn it_works() {
-        assert_eq!(fetch_data(Ok("server1.com"), Security::Warning),"server1.com");
+        assert_eq!(fetch_data(Err("server.com"), Security::Message), "server1.com");
     }
 }
