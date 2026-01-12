@@ -31,7 +31,7 @@ impl Form {
         if self.password.len() < 8 {
             return Err(
                 FormError::new(
-                    "name",
+                    "password",
                     self.name.clone(),
                     "Password should be at least 8 characters long"
                 )
@@ -52,7 +52,7 @@ impl Form {
         if valid.contains(&false) {
             return Err(
                 FormError::new(
-                    "name",
+                    "password",
                     self.name.clone(),
                     "Password should be a combination of ASCII numbers, letters and symbols"
                 )
@@ -62,13 +62,4 @@ impl Form {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+// Integration tests live under tests/; keep this file focused on the public API.
