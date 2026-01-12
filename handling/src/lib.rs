@@ -4,7 +4,7 @@ use std::fs::OpenOptions;
 
 pub fn open_or_create<P: AsRef<Path>>(path: &P, content: &str) {
     let mut file = OpenOptions::new().read(true).create(true).append(true).open(path).unwrap();
-    file.write_all(content.as_bytes());
+    file.write_all(content.as_bytes()).unwrap();
 }
 
 #[cfg(test)]
