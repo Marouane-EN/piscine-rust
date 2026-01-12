@@ -3,13 +3,7 @@ use std::{ collections::HashMap };
 pub fn word_frequency_counter<'a>(words: &[&'a str]) -> HashMap<&'a str, usize> {
     let mut map = HashMap::new();
     for word in words {
-        if map.contains_key(*word) {
-            if let Some(v) = map.get_mut(*word) {
-                *v += 1;
-            }
-        } else {
-            map.insert(*word, (1).to_owned());
-        }
+        *map.entry(*word).or_insert(0) += 1;
     }
     map
 }
