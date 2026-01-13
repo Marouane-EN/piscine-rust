@@ -29,6 +29,7 @@ pub fn edit_distance(source: &str, target: &str) -> usize {
 }
 
 pub fn expected_variable(receives: &str, expected: &str) -> Option<String> {
+    println!("{}{}---", receives, expected);
     let c = receives
         .chars()
         .filter(|c| c.is_ascii_uppercase())
@@ -36,7 +37,10 @@ pub fn expected_variable(receives: &str, expected: &str) -> Option<String> {
     if !receives.contains("_") || c.len() == 0 {
         return None;
     }
-    let p = ((expected.len() - edit_distance(&receives.to_lowercase(), &expected.to_lowercase())) * 100) / expected.len();
+    let p =
+        ((expected.len() - edit_distance(&receives.to_lowercase(), &expected.to_lowercase())) *
+            100) /
+        expected.len();
     if p <= 50 {
         return None;
     }
