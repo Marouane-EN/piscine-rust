@@ -1,5 +1,5 @@
 mod areas_volumes;
-
+use areas_volumes::{ GeometricalShapes, GeometricalVolumes };
 pub fn area_fit(
     (x, y): (usize, usize),
     kind: areas_volumes::GeometricalShapes,
@@ -59,21 +59,13 @@ mod tests {
 
     #[test]
     fn spheres_fit() {
-        assert!(volume_fit(
-            (5, 5, 5),
-            areas_volumes::GeometricalVolumes::Sphere,
-            3,
-            (2, 0, 0)
-        ));
+        assert!(volume_fit((5, 5, 5), areas_volumes::GeometricalVolumes::Sphere, 3, (2, 0, 0)));
     }
 
     #[test]
     fn parallelepiped_fits() {
-        assert!(volume_fit(
-            (5, 7, 5),
-            areas_volumes::GeometricalVolumes::Parallelepiped,
-            1,
-            (6, 7, 4)
-        ));
+        assert!(
+            volume_fit((5, 7, 5), areas_volumes::GeometricalVolumes::Parallelepiped, 1, (6, 7, 4))
+        );
     }
 }
