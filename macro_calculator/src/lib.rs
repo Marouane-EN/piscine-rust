@@ -26,20 +26,20 @@ pub fn calculate_macros(foods: &[Food]) -> json::JsonValue {
 
         food["cals"] = (
             calcule_cals +
-            ((c[..c.len() - 4].parse::<f64>().unwrap() * 100.0).round() / 1000.0) *
+            ((c[..c.len() - 4].parse::<f64>().unwrap() * 100.0).round() / 100.0) *
                 f.nbr_of_portions
         ).into();
         food["carbs"] = (
             calcule_cards +
-            ((f.carbs.clone() * 100.0).round() / 1000.0) * f.nbr_of_portions
+            ((f.carbs.clone() * 100.0).round() / 100.0) * f.nbr_of_portions
         ).into();
         food["proteins"] = (
             calcule_proteins +
-            ((f.proteins.clone() * 100.0).round() / 1000.0) * f.nbr_of_portions
+            ((f.proteins.clone() * 100.0).round() / 100.0) * f.nbr_of_portions
         ).into();
         food["fats"] = (
             calcule_fats +
-            ((f.fats.clone() * 100.0).round() / 1000.0) * f.nbr_of_portions
+            ((f.fats.clone() * 100.0).round() / 100.0) * f.nbr_of_portions
         ).into();
     }
 
