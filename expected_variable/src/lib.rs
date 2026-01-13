@@ -44,5 +44,5 @@ pub fn expected_variable(receives: &str, expected: &str) -> Option<String> {
     if p <= 50 {
         return None;
     }
-    Some(format!("%{}", p))
+    Some(format!("{}%", p))
 }
