@@ -19,12 +19,28 @@ pub fn calculate_macros(foods: &[Food]) -> json::JsonValue {
     };
     for f in foods {
         let c = f.calories.1.clone();
+        let calcule_cals = food["cals"].as_f64().unwrap();
+        let calcule_cards = food["carbs"].as_f64().unwrap();
+        let calcule_proteins = food["proteins"].as_f64().unwrap();
+        let calcule_fats = food["fats"].as_f64().unwrap();
+
         food["cals"] = (
-            (c[..c.len() - 4].parse::<f64>().expect("thala") * 100.0).round() / 1000.0
+            calcule_cals +
+            ((c[..c.len() - 4].parse::<f64>().unwrap() * 100.0).round() / 1000.0) *
+                f.nbr_of_portions
         ).into();
-        food["carbs"] = ((f.carbs.clone() * 100.0).round() / 1000.0).into();
-        food["proteins"] = ((f.proteins.clone() * 100.0).round() / 1000.0).into();
-        food["fats"] = ((f.fats.clone() * 100.0).round() / 1000.0).into();
+        food["carbs"] = (
+            calcule_cards +
+            ((f.carbs.clone() * 100.0).round() / 1000.0) * f.nbr_of_portions
+        ).into();
+        food["proteins"] = (
+            calcule_proteins +
+            ((f.proteins.clone() * 100.0).round() / 1000.0) * f.nbr_of_portions
+        ).into();
+        food["fats"] = (
+            calcule_fats +
+            ((f.fats.clone() * 100.0).round() / 1000.0) * f.nbr_of_portions
+        ).into();
     }
 
     food
