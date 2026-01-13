@@ -18,10 +18,12 @@ pub fn calculate_macros(foods: &[Food]) -> json::JsonValue {
         "fats": 0.0,
     };
     for f in foods {
-        food["cals"] = f.calories.1.clone().into();
-        food["carbs"] = f.carbs.clone().into();
-        food["proteins"] = f.proteins.clone().into();
-        food["fats"] = f.fats.clone().into();
+        food["cals"] = (
+            (f.calories.1.clone().parse::<f64>().unwrap() * 100.0).round() / 1000.0
+        ).into();
+        food["carbs"] = ((f.carbs.clone() * 100.0).round() / 1000.0).into();
+        food["proteins"] = ((f.proteins.clone() * 100.0).round() / 1000.0).into();
+        food["fats"] = ((f.fats.clone() * 100.0).round() / 1000.0).into();
     }
 
     food
@@ -31,7 +33,5 @@ mod tests {
     use super::*;
 
     #[test]
-    fn it_works() {
-
-    }
+    fn it_works() {}
 }
