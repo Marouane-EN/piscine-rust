@@ -1,4 +1,4 @@
-use std::cmp;
+use std::cmp::{ self, max };
 pub fn edit_distance(source: &str, target: &str) -> usize {
     let m = source.len(); // 10
     let n = target.len(); // 10
@@ -29,20 +29,21 @@ pub fn edit_distance(source: &str, target: &str) -> usize {
 }
 
 pub fn expected_variable(receives: &str, expected: &str) -> Option<String> {
-    println!("{}{}---", receives, expected);
     let c = receives
         .chars()
         .filter(|c| c.is_ascii_uppercase())
         .collect::<String>();
-    if !receives.contains("_") || c.len() == 0 {
+    if (!receives.contains("_") && c.len() == 0) || receives.contains(" ") {
+
         return None;
     }
+    let max = max(expected.len(), receives.len());
     let p =
-        ((expected.len() - edit_distance(&receives.to_lowercase(), &expected.to_lowercase())) *
-            100) /
-        expected.len();
-    if p <= 50 {
+        (((max - edit_distance(&receives.to_lowercase(), &expected.to_lowercase())) as f64) *
+            100.0) /
+        (max as f64);
+    if p <= 50.0 {
         return None;
     }
-    Some(format!("{}%", p))
+    Some(format!("{}%", p.round() as usize))
 }
