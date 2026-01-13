@@ -1,6 +1,6 @@
 mod mall;
+pub use mall::*;
 use std::collections::HashMap;
-use mall::*;
 pub fn biggest_store(mall: &Mall) -> (String, Store) {
     let mut map = HashMap::new();
     for m in mall.floors.clone() {

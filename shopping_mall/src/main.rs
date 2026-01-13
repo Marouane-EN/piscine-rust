@@ -1,4 +1,6 @@
+
 use shopping_mall::*;
+
 fn main() {
     let mut mall = Mall::new(
         "La Vie Funchal",
@@ -17,8 +19,7 @@ fn main() {
                     years_experience: 15,
                 },
             ),
-        ]
-        .into(),
+        ].into(),
         [
             (
                 "Ground Floor",
@@ -44,9 +45,8 @@ fn main() {
                                             salary: 1000.43,
                                         },
                                     ),
-                                ]
-                                .into(),
-                                50,
+                                ].into(),
+                                50
                             ),
                         ),
                         (
@@ -69,90 +69,87 @@ fn main() {
                                             salary: 831.9,
                                         },
                                     ),
-                                ]
-                                .into(),
-                                43,
+                                ].into(),
+                                43
                             ),
                         ),
-                    ]
-                    .into(),
-                    300,
+                    ].into(),
+                    300
                 ),
             ),
             (
                 "Supermarket",
                 Floor::new(
-                    [(
-                        "Pretail",
-                        Store::new(
-                            [
-                                (
-                                    "Yara Wickens",
-                                    Employee {
-                                        age: 39,
-                                        working_hours: (9, 14),
-                                        salary: 853.42,
-                                    },
-                                ),
-                                (
-                                    "Indiana Baxter",
-                                    Employee {
-                                        age: 33,
-                                        working_hours: (13, 20),
-                                        salary: 991.71,
-                                    },
-                                ),
-                                (
-                                    "Jadine Page",
-                                    Employee {
-                                        age: 48,
-                                        working_hours: (13, 20),
-                                        salary: 743.21,
-                                    },
-                                ),
-                                (
-                                    "Tyler Hunt",
-                                    Employee {
-                                        age: 63,
-                                        working_hours: (13, 20),
-                                        salary: 668.25,
-                                    },
-                                ),
-                                (
-                                    "Mohsin Mcgee",
-                                    Employee {
-                                        age: 30,
-                                        working_hours: (19, 24),
-                                        salary: 703.83,
-                                    },
-                                ),
-                                (
-                                    "Antoine Goulding",
-                                    Employee {
-                                        age: 45,
-                                        working_hours: (19, 24),
-                                        salary: 697.12,
-                                    },
-                                ),
-                                (
-                                    "Mark Barnard",
-                                    Employee {
-                                        age: 53,
-                                        working_hours: (19, 24),
-                                        salary: 788.81,
-                                    },
-                                ),
-                            ]
-                            .into(),
-                            950,
+                    [
+                        (
+                            "Pretail",
+                            Store::new(
+                                [
+                                    (
+                                        "Yara Wickens",
+                                        Employee {
+                                            age: 39,
+                                            working_hours: (9, 14),
+                                            salary: 853.42,
+                                        },
+                                    ),
+                                    (
+                                        "Indiana Baxter",
+                                        Employee {
+                                            age: 33,
+                                            working_hours: (13, 20),
+                                            salary: 991.71,
+                                        },
+                                    ),
+                                    (
+                                        "Jadine Page",
+                                        Employee {
+                                            age: 48,
+                                            working_hours: (13, 20),
+                                            salary: 743.21,
+                                        },
+                                    ),
+                                    (
+                                        "Tyler Hunt",
+                                        Employee {
+                                            age: 63,
+                                            working_hours: (13, 20),
+                                            salary: 668.25,
+                                        },
+                                    ),
+                                    (
+                                        "Mohsin Mcgee",
+                                        Employee {
+                                            age: 30,
+                                            working_hours: (19, 24),
+                                            salary: 703.83,
+                                        },
+                                    ),
+                                    (
+                                        "Antoine Goulding",
+                                        Employee {
+                                            age: 45,
+                                            working_hours: (19, 24),
+                                            salary: 697.12,
+                                        },
+                                    ),
+                                    (
+                                        "Mark Barnard",
+                                        Employee {
+                                            age: 53,
+                                            working_hours: (19, 24),
+                                            salary: 788.81,
+                                        },
+                                    ),
+                                ].into(),
+                                950
+                            ),
                         ),
-                    )]
-                    .into(),
-                    1000,
+                    ].into(),
+                    1000
                 ),
             ),
-        ]
-        .into(),
+        ].into()
     );
 
     // returns the biggest store
@@ -239,8 +236,8 @@ fn main() {
                 },
             ),
         ]
-        .map(|(n, d)| (n.to_owned(), d))
-        .into(),
+            .map(|(n, d)| (n.to_owned(), d))
+            .into()
     );
 
     // raises or cuts the salary of every employee
