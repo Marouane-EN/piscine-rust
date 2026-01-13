@@ -1,4 +1,4 @@
-use std::{ collections::HashMap, fmt::{ Error, format }, num::ParseFloatError };
+use std::{ collections::HashMap, num::ParseFloatError };
 
 pub struct Flag {
     short_hand: String,
@@ -60,3 +60,4 @@ mod tests {
         assert_eq!(result, 4);
     }
 }
+
