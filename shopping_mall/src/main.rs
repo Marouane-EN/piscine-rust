@@ -1,5 +1,4 @@
 use shopping_mall::*;
-
 fn main() {
     let mut mall = Mall::new(
         "La Vie Funchal",
