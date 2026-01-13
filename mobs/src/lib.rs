@@ -1,5 +1,5 @@
 mod mobs;
-use mobs::*;
+pub use mobs::*;
 use std::collections::HashMap;
 use std::collections::HashSet;
 
