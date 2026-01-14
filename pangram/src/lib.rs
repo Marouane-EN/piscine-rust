@@ -5,7 +5,7 @@ pub fn is_pangram(s: &str) -> bool {
     for c in s.chars() {
         match c.to_ascii_lowercase() {
             'a'..='z' => {
-                map.insert(c);
+                map.insert(c.to_ascii_lowercase());
             }
             _ => {}
         }
