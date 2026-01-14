@@ -1,6 +1,6 @@
 pub fn num_to_ordinal(x: u32) -> String {
     let suffix = match x % 100 {
-        11..13 => "th",
+        11..=13 => "th",
         _ =>
             match x % 10 {
                 1 => "st",
