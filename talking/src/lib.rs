@@ -1,7 +1,7 @@
 pub fn talking(text: &str) -> &str {
     match text {
         t if t == text.to_ascii_uppercase() && text.contains("?") => "Quiet, I am thinking!",
-        t if t == text.to_ascii_uppercase() => "There is no need to yell, calm down!",
+        t if t == text.to_ascii_uppercase() && !text.is_empty() => "There is no need to yell, calm down!",
         t if t == text.to_ascii_lowercase() && text.contains("?") => "Sure.",
         "" => "Just say something!",
         _ => "Interesting",
@@ -15,5 +15,9 @@ mod tests {
     #[test]
     fn it_works() {
         assert_eq!(talking("JUST DO IT!"), "There is no need to yell, calm down!");
+    }
+    #[test]
+    fn it_works1() {
+        assert_eq!(talking(""), "Just say something!");
     }
 }
