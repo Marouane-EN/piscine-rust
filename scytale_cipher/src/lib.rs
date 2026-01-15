@@ -1,4 +1,7 @@
 pub fn scytale_cipher(message: &str, i: usize) -> String {
+    if message.is_empty() || i == 0 {
+        return "".to_string();
+    }
     let mut res = String::new();
     let mut new_message = String::from(message);
     let n = message.len() % i;
