@@ -2,7 +2,7 @@ pub fn talking(text: &str) -> &str {
     match text {
         t if t == text.to_ascii_uppercase() && text.contains("?") => "Quiet, I am thinking!",
         t if t == text.to_ascii_uppercase() => "There is no need to yell, calm down!",
-        t if t == text.to_ascii_lowercase() => "Sure.",
+        t if t == text.to_ascii_lowercase() && text.contains("?") => "Sure.",
         "" => "Just say something!",
         _ => "Interesting",
     }
