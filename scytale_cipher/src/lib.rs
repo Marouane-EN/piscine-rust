@@ -8,15 +8,24 @@ pub fn scytale_cipher(message: &str, i: usize) -> String {
     if n != 0 {
         new_message.push_str(&" ".repeat(n));
     }
-    for j in 0..i {
-        let first = new_message.chars().nth(j).unwrap();
-        let second = new_message
-            .chars()
-            .nth(j + i)
-            .unwrap();
+        println!("new_message {new_message}--");
 
+    for j in 0..i {
+        let mut x = j;
+        let first = new_message.chars().nth(j).unwrap();
         res.push(first);
-        res.push(second);
+        println!("{res} j {j} ");
+
+        while x + i < new_message.len() {
+            println!("{res} x {x}");
+            let second = new_message
+                .chars()
+                .nth(x + i)
+                .unwrap();
+
+            res.push(second);
+            x += i;
+        }
     }
     res.trim().to_string()
 }
