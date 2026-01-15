@@ -8,7 +8,7 @@ pub fn scytale_cipher(message: &str, i: usize) -> String {
     if n != 0 {
         new_message.push_str(&" ".repeat(n));
     }
-        println!("new_message {new_message}--");
+        println!("new_message {new_message}--{i}");
 
     for j in 0..i {
         let mut x = j;
