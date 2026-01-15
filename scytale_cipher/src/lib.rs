@@ -4,11 +4,12 @@ pub fn scytale_cipher(message: &str, i: usize) -> String {
     }
     let mut res = String::new();
     let mut new_message = String::from(message);
-    let n = message.len() % i;
-    if n != 0 {
-        new_message.push_str(&" ".repeat(n));
+    let mut n = message.len();
+    while n % i != 0 {
+        new_message.push_str(&" ");
+        n += 1;
     }
-        println!("new_message {new_message}--{i}");
+    println!("new_message {new_message}--{i}--{}--{}", message.len(), new_message.len());
 
     for j in 0..i {
         let mut x = j;
@@ -40,6 +41,6 @@ mod tests {
     }
     #[test]
     fn it_works1() {
-        assert_eq!(scytale_cipher("scytale Code", 8), "sCcoydtea l e");
+        assert_eq!(scytale_cipher("attack morning", 6), "a ntmgto ar cn ki");
     }
 }
