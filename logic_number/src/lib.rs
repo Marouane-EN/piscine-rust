@@ -1,21 +1,22 @@
 pub fn number_logic(num: u32) -> bool {
     let s = num.to_string();
-    let mut sum = 0;
-    let mut i = 0;
-    while sum < num {
-        sum = 0;
+    let mut i = 1;
+    loop {
+        let mut sum = 0;
         for c in s.chars() {
             sum += c.to_digit(10).unwrap().pow(i);
         }
-        if sum < 2 {
+        if sum > num {
             return false;
         }
         if sum == num {
             return true;
         }
         i += 1;
+        if i > 10 {
+            break;
+        }
     }
-
     false
 }
 
