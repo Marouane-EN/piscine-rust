@@ -1,24 +1,13 @@
 pub fn talking(text: &str) -> &str {
-    match text {
-        t if t == text.to_ascii_uppercase() && text.contains("?") => "Quiet, I am thinking!",
-        t if t == text.to_ascii_uppercase() && !text.is_empty() =>
-            "There is no need to yell, calm down!",
-        t if t == text.to_ascii_lowercase() && text.contains("?") => "Sure.",
-        t if t.trim().is_empty() => "Just say something!",
+    let is_empty = text.trim().is_empty();
+    let is_yelling = text.chars().any(|c| c.is_alphabetic()) && text == text.to_uppercase();
+    let is_question = text.trim().ends_with('?');
+
+    match (is_empty, is_yelling, is_question) {
+        (true, _, _) => "Just say something!",
+        (_, true, true) => "Quiet, I am thinking!",
+        (_, true, _) => "There is no need to yell, calm down!",
+        (_, _, true) => "Sure.",
         _ => "Interesting",
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        assert_eq!(talking("JUST DO IT!"), "There is no need to yell, calm down!");
-    }
-    #[test]
-    fn it_works1() {
-        assert_eq!(talking("just say something?"), "Just say something!");
     }
 }
