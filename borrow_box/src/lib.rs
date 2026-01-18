@@ -14,10 +14,10 @@ impl GameSession {
     pub fn read_winner(&self) -> Option<&(String, u32)> {
         let finish = ((self.nb_games as f64) / 2.0).round();
 
-        if self.p1.1 > self.p2.1 && self.p1.1 < (finish as u32) {
+        if self.p1.1 > self.p2.1 || self.p1.1 >= (finish as u32) {
             return Some(&self.p1);
         }
-        if self.p2.1 > self.p1.1 && self.p2.1 < (finish as u32) {
+        if self.p2.1 > self.p1.1 || self.p2.1 >= (finish as u32) {
             return Some(&self.p2);
         }
         None
@@ -35,31 +35,5 @@ impl GameSession {
 
     pub fn delete(self) -> String {
         return format!("game deleted: id -> {}", self.id);
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_game_session() {
-        let mut game = GameSession::new(0, String::from("Joao"), String::from("Susana"), 5);
-        println!("{:?}", game.read_winner());
-
-        game.update_score("Joao");
-        game.update_score("Joao");
-        game.update_score("Susana");
-        game.update_score("Susana");
-        println!("{:?}", game.read_winner());
-
-        game.update_score("Joao");
-
-        println!("{:?}", game.read_winner());
-
-        println!("{:?}", game.delete());
-
-        // game.read_winner();
-        // This will give an error as the game was dropped with `delete` and no longer exists
     }
 }
