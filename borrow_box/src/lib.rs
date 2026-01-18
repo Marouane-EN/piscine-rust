@@ -1,5 +1,3 @@
-use std::{ fmt::format, ptr::null };
-
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub struct GameSession {
     pub id: u32,
@@ -14,20 +12,23 @@ impl GameSession {
     }
 
     pub fn read_winner(&self) -> Option<&(String, u32)> {
-        if &self.p1.1 > &self.p2.1 {
+        let finish = ((self.nb_games as f64) / 2.0).round();
+
+        if self.p1.1 > self.p2.1 && self.p1.1 < (finish as u32) {
             return Some(&self.p1);
         }
-        if &self.p2.1 > &self.p1.1 {
+        if self.p2.1 > self.p1.1 && self.p2.1 < (finish as u32) {
             return Some(&self.p2);
         }
         None
     }
 
     pub fn update_score(&mut self, user_name: &str) {
-        if &self.p1.0 == user_name && &self.p1.1 != &self.nb_games {
+        let finish = ((self.nb_games as f64) / 2.0).round();
+        if self.p1.0 == user_name && self.p1.1 < (finish as u32) {
             self.p1.1 += 1;
         }
-        if &self.p2.0 == user_name && &self.p2.1 != &self.nb_games {
+        if self.p2.0 == user_name && self.p2.1 < (finish as u32) {
             self.p2.1 += 1;
         }
     }
@@ -53,7 +54,6 @@ mod tests {
         println!("{:?}", game.read_winner());
 
         game.update_score("Joao");
-
 
         println!("{:?}", game.read_winner());
 
