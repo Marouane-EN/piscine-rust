@@ -9,7 +9,7 @@ impl From<&str> for Role {
     fn from(value: &str) -> Self {
         match value {
             "CEO" => Self::CEO,
-            "Manager" => Self::CEO,
+            "Manager" => Self::Manager,
             _ => Self::Worker,
         }
     }
