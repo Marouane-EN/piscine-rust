@@ -1,4 +1,4 @@
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum Role {
     CEO,
     Manager,
@@ -20,7 +20,7 @@ pub struct WorkEnvironment {
     pub grade: Link,
 }
 
-pub type Link = Option<Worker>;
+pub type Link = Option<Box<Worker>>;
 
 #[derive(Debug)]
 pub struct Worker {
@@ -35,26 +35,23 @@ impl WorkEnvironment {
     }
 
     pub fn add_worker(&mut self, name: &str, role: &str) {
-        let mut work = self.grade.as_mut().unwrap().next;
-        while let Some(w) = work {
-            if w.next.is_none() {
-                let new_worker = Worker {
-                    role: Role::from(role),
-                    name: name.to_string(),
-                    next: None,
-                };
-                w.next = Some(new_worker);
-            }
-            work = w.next;
-        }
+        let head = Box::new(Worker {
+            role: Role::from(role),
+            name: name.to_string(),
+            next: self.grade.take(),
+        });
+        self.grade = Some(head);
     }
 
     pub fn remove_worker(&mut self) -> Option<String> {
-        todo!()
+        let name = self.grade.take()?;
+        self.grade = name.next;
+        Some(name.name)
     }
 
     pub fn last_worker(&self) -> Option<(String, Role)> {
-        todo!()
+        let name = self.grade.as_ref()?;
+        Some((name.name.clone(), name.role))
     }
 }
 
@@ -64,7 +61,6 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+
     }
 }
