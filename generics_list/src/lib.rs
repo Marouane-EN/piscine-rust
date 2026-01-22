@@ -30,7 +30,10 @@ impl<T> List<T> {
 
     pub fn pop(&mut self) {
         self.head.take().map(|f| {
-            self.head = Some(*f.next.unwrap());
+            self.head = match f.next {
+               Some(j) => Some(*j),
+               None => None, 
+            }
         });
     }
 
