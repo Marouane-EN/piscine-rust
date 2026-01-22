@@ -26,7 +26,7 @@ impl Player<'_> {
 
 impl fmt::Display for Player<'_> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        writeln!(
+        write!(
             f,
             "{}\nStrength: {}, Score: {}, Money: {}\nWeapons: {:?}",
             self.name,
