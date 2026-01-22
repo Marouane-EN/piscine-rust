@@ -23,7 +23,7 @@ impl AppendStrExt for String {
     fn remove_punctuation_marks(&mut self) -> &mut Self {
         *self = self
             .chars()
-            .filter(|c| c.is_alphanumeric() || *c == ' ')
+            .filter(|c| !".,?!".contains(*c))
             .collect();
         self
     }
