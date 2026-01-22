@@ -44,13 +44,13 @@ pub trait Food {
 
 impl Food for Fruit {
     fn gives(&self) -> f64 {
-        4.0 * self.weight_in_kg.ceil()
+        4.0 * self.weight_in_kg
     }
 }
 
 impl Food for Meat {
     fn gives(&self) -> f64 {
-        (self.weight_in_kg - self.fat_content).ceil() * 4.0 + self.fat_content.ceil() * 9.0
+        (self.weight_in_kg - self.fat_content) * 4.0 + self.fat_content * 9.0
     }
 }
 
@@ -59,7 +59,5 @@ mod tests {
     use super::*;
 
     #[test]
-    fn it_works() {
-
-    }
+    fn it_works() {}
 }
