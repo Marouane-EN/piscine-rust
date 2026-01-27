@@ -11,10 +11,11 @@ impl Store {
 #[derive(Debug, Clone, PartialEq)]
 pub struct Cart {
     pub items: Vec<(String, f32)>,
+    pub receipt: Vec<f32>,
 }
 impl Cart {
     pub fn new() -> Cart {
-        Cart { items: Vec::new() }
+        Cart { items: Vec::new(), receipt: Vec::new() }
     }
     pub fn insert_item(&mut self, s: &Store, ele: String) {
         if let Some(n) = s.products.iter().find(|f| f.0 == ele) {
@@ -27,24 +28,24 @@ impl Cart {
             .iter()
             .map(|f| f.1)
             .sum();
-        println!("{sum}-----");
+
         let mut sub = 2.0;
+
         if self.items.len() == 3 {
             sub = self.items[0].1 / sum;
         }
+        
         if self.items.len() == 9 {
             sub = self.items[0].1 + self.items[1].1 + self.items[2].1 / sum;
         }
-        println!("{sub}-----");
 
-        for item in self.items.iter_mut() {
-            item.1 *= 1.0 - sub;
-            item.1 = (item.1 * 100.0).round() / 100.0;
+        for item in self.items.iter() {
+            let mut i = item.1 * (1.0 - sub);
+            i = (i * 100.0).round() / 100.0;
+            self.receipt.push(i);
         }
-        self.items
-            .iter()
-            .map(|f| f.1)
-            .collect()
+
+        self.receipt.clone()
     }
 }
 
