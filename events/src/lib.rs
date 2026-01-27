@@ -72,7 +72,7 @@ fn format_time(d: Duration) -> String {
     let s = d.as_secs();
     let min = s / 60;
     let h = s / 3600;
-    format!("{}H:{}M:{}S", h, min, s)
+    format!("{}H:{}M:{}S", h, min, s%60)
 }
 
 #[cfg(test)]
