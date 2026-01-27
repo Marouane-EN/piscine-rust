@@ -31,11 +31,11 @@ impl Cart {
 
         let mut sub = 0.0;
 
-        if self.items.len() == 3 {
+        if self.items.len() >= 3 {
             sub = self.items[0].1 / sum;
         }
 
-        if self.items.len() == 9 {
+        if self.items.len() >= 9 {
             sub = self.items[0].1 + self.items[1].1 + self.items[2].1 / sum;
         }
 
