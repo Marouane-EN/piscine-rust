@@ -1,7 +1,7 @@
 use std::ops::{ Add, Sub, Mul };
 use matrix::Matrix;
 use lalgebra_scalar::Scalar;
-
+#[derive(Debug, Eq, PartialEq, Clone, Copy)]
 pub struct Wrapper<const W: usize, const H: usize, T: Scalar>(pub Matrix<W, H, T>);
 
 impl<const W: usize, const H: usize, T: Scalar> From<[[T; W]; H]> for Wrapper<W, H, T> {
