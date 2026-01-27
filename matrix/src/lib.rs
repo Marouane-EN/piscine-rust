@@ -1,10 +1,10 @@
-use scalar::Scalar;
+use lalgebra_scalar::Scalar;
 #[derive(Debug, Eq, PartialEq, Clone, Copy)]
 pub struct Matrix<const W: usize, const H: usize, T: Scalar>(pub [[T; W]; H]);
 
 impl<const W: usize, const H: usize, T: Scalar> Matrix<W, H, T> {
     pub fn zero() -> Self {
-        Self([[T::zero(); w]; H])
+        Self([[T::zero(); W]; H])
     }
 }
 
@@ -16,21 +16,5 @@ impl<const S: usize, T: Scalar> Matrix<S, S, T> {
         }
 
         Matrix(raw)
-    }
-}
-
-impl<S, T> Matrix<S, S, T> {
-    pub fn identity() -> Self {
-        todo!()
-    }
-}
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
     }
 }

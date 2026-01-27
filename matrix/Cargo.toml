@@ -4,4 +4,4 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-scalar = { path = "../lalgebra_scalar" }
+lalgebra_scalar = { path = "../lalgebra_scalar" }
