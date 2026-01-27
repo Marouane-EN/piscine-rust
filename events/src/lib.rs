@@ -70,9 +70,9 @@ impl Event<'_> {
 
 fn format_time(d: Duration) -> String {
     let s = d.as_secs();
-    let min = s / 60;
+    let min = (s % 3600) / 60;
     let h = s / 3600;
-    format!("{}H:{}M:{}S", h, min, s%60)
+    format!("{}H:{}M:{}S", h, min, s % 60)
 }
 
 #[cfg(test)]
@@ -81,12 +81,9 @@ mod tests {
 
     #[test]
     fn it_works() {
-         println!("{}", Event::Remainder("Go to the doctor").notify());
-    println!(
-        "{}",
-        Event::Registration(Duration::from_secs(49094)).notify()
-    );
-    println!("{}", Event::Appointment("Go to the doctor").notify());
-    println!("{}", Event::Holiday.notify());
+        println!("{}", Event::Remainder("Go to the doctor").notify());
+        println!("{}", Event::Registration(Duration::from_secs(49094)).notify());
+        println!("{}", Event::Appointment("Go to the doctor").notify());
+        println!("{}", Event::Holiday.notify());
     }
 }
