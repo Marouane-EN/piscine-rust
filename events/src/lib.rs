@@ -26,8 +26,8 @@ pub enum Event<'a> {
 
 impl fmt::Display for Notification {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let a = format!("({:?}, {})", self.position, self.size);
-        write!(f, "{}, {}", a, self.content.truecolor(self.color.0, self.color.1, self.color.2))
+        let a = format!("({:?}, {}", self.position, self.size);
+        write!(f, "{}, {})", a, self.content.truecolor(self.color.0, self.color.1, self.color.2))
     }
 }
 
@@ -81,5 +81,12 @@ mod tests {
 
     #[test]
     fn it_works() {
+         println!("{}", Event::Remainder("Go to the doctor").notify());
+    println!(
+        "{}",
+        Event::Registration(Duration::from_secs(49094)).notify()
+    );
+    println!("{}", Event::Appointment("Go to the doctor").notify());
+    println!("{}", Event::Holiday.notify());
     }
 }
