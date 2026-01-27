@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7429200b1f3aa984f7ea963145f6c57ebdfc133d
 pub fn delete_and_backspace(s: &mut String) {
     let mut new_s = String::new();
     let mut skip = 0;
