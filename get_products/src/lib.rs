@@ -20,6 +20,6 @@ mod tests {
     fn it_works() {
         let arr: Vec<usize> = vec![1, 7, 3, 4];
         let output = get_products(arr);
-        println!("{:?}", output);
+        println!("{:?}--", output);
     }
 }
