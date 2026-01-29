@@ -9,12 +9,13 @@ impl Iterator for Collatz {
         if self.v == 0 || self.v == 1 {
             return None;
         }
+        let c = self.v;
         if self.v % 2 == 0 {
             self.v = self.v / 2;
         } else {
             self.v = (3 * self.v) + 1;
         }
-        Some(Collatz { v: self.v })
+        Some(Collatz { v: c })
     }
 }
 
