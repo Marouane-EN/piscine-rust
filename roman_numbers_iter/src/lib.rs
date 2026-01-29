@@ -24,7 +24,7 @@ impl Iterator for RomanNumber {
     type Item = Self;
     fn next(&mut self) -> Option<Self::Item> {
         let c = to_num(self.0.clone());
-        Some(RomanNumber::from(c+1))
+        Some(RomanNumber::from(c + 1))
     }
 }
 fn calc(value: u32) -> Vec<RomanDigit> {
@@ -128,46 +128,26 @@ fn calc(value: u32) -> Vec<RomanDigit> {
 
 fn to_num(r: Vec<RomanDigit>) -> u32 {
     let mut sum = 0;
-    for c in r {
-        match c {
-            RomanDigit::Nulla => {
-                return 0;
-            }
-            RomanDigit::I => {
-                sum += 1;
-            }
-            RomanDigit::V => {
-                sum += 5;
-            }
-            RomanDigit::X => {
-                sum += 10;
-            }
-            RomanDigit::L => {
-                sum += 50;
-            }
-            RomanDigit::C => {
-                sum += 100;
-            }
-            RomanDigit::D => {
-                sum += 500;
-            }
-            RomanDigit::M => {
-                sum += 1000;
-            }
+    let mut prev_value = 0;
+
+
+    for c in r.iter().rev() {
+        let value = match c {
+            RomanDigit::Nulla => 0,
+            RomanDigit::I => 1,
+            RomanDigit::V => 5,
+            RomanDigit::X => 10,
+            RomanDigit::L => 50,
+            RomanDigit::C => 100,
+            RomanDigit::D => 500,
+            RomanDigit::M => 1000,
+        };
+        if value < prev_value {
+            sum -= value;
+        } else {
+            sum += value;
+            prev_value = value;
         }
     }
     sum
-}
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-       let mut number = RomanNumber::from(15);
-
-	println!("{:?}", number);
-	println!("{:?}", number.next());
-    }
-    
 }
